@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}个人中心 · 数码选购AI顾问{% endblock %}
+{% block content %}
+<h1 class="page-title">个人中心</h1>
+
+<div class="card panel" id="profileBox">
+  {% if user %}
+    <div class="profile-row">
+      <span class="profile-avatar">👤</span>
+      <div>
+        <p><b>用户名：</b>{{ user.username }}</p>
+        <p><b>注册时间：</b>{{ user.created_at }}</p>
+        <p><b>状态：</b>已登录</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-ghost" id="profileSettingsBtn">⚙ 打开设置</button>
+      <a class="btn btn-ghost" href="/">返回首页</a>
+    </div>
+  {% else %}
+    <p>当前为<b>游客模式</b>。游客可以直接使用「新机选购 / 参数对比 / 故障问诊」。</p>
+    <p class="muted">登录后可在这里查看账号信息。</p>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="openLoginModal('login')">立即登录</button>
+      <button class="btn btn-ghost" onclick="openLoginModal('register')">注册账号</button>
+      <a class="btn btn-ghost" href="/">返回首页</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const sb = document.getElementById('profileSettingsBtn');
+  if (sb) {
+    sb.addEventListener('click', function () {
+      document.getElementById('settingsModal').hidden = false;
+      loadSettingsIntoForm();
+    });
+  }
+});
+</script>
+{% endblock %}

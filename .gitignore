@@ -1,0 +1,13 @@
+﻿__pycache__/
+*.pyc
+.env
+data/*.db
+data/*.db-journal
+logs/
+.venv/
+data/settings.json
+data/settings.json.txt
+data/secret_key
+data/advisor.db-wal
+data/advisor.db-shm
+cache/*.py

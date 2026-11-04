@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}参数对比 · 数码选购AI顾问{% endblock %}
+{% block content %}
+<h1 class="page-title">⚖️ 数码产品参数对比</h1>
+<p class="subtitle">输入两款数码产品型号，AI 生成统一格式对比表格和总结（支持保存记录）</p>
+
+<div class="card panel">
+  <form id="compareForm">
+    <div class="grid-3">
+      <label>产品 A
+        <input id="compareA" required placeholder="例如：iPhone 17 Pro">
+      </label>
+      <label>产品 B
+        <input id="compareB" required placeholder="例如：华为 Mate 70 Pro">
+      </label>
+      <label>关注点（可选）
+        <input id="compareNotes" placeholder="例如：更看重拍照">
+      </label>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" type="submit" id="btnCompare">开始对比</button>
+      <button class="btn btn-ghost" type="button" id="btnSaveCompare" hidden>💾 保存此对比</button>
+    </div>
+  </form>
+</div>
+
+<div id="compareResult" class="card panel" hidden></div>
+
+<div class="card panel">
+  <div class="result-head"><h2>已保存的对比记录</h2><button type="button" class="btn btn-danger btn-sm" id="btnClearCompareRecords">清空</button></div>
+  <div id="compareRecords"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/compare.js') }}?v=3"></script>
+{% endblock %}

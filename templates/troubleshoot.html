@@ -1,0 +1,21 @@
+﻿{% extends "base.html" %}
+{% block title %}故障问诊 · 数码选购AI顾问{% endblock %}
+{% block content %}
+<h1 class="page-title">🩺 故障问诊</h1>
+<p class="subtitle">描述故障现象，AI 会一步步引导你排查，先简单方案后进阶方案</p>
+
+<div class="card panel chat-panel">
+  <div class="chat-head">
+    <span>对话记录</span>
+    <button class="btn btn-ghost btn-sm" id="btnNewChat">新对话</button>
+  </div>
+  <div id="chatBox" class="chat-box"></div>
+  <div class="chat-input-row">
+    <textarea id="chatInput" rows="2" placeholder="例如：我的笔记本连不上 Wi-Fi，显示已保存但一直要密码"></textarea>
+    <button class="btn btn-primary" id="btnSend">发送</button>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/troubleshoot.js') }}?v=3"></script>
+{% endblock %}

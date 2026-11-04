@@ -1,0 +1,66 @@
+﻿{% extends "base.html" %}
+{% block title %}首页 · 数码选购AI顾问{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>数码选购 AI 顾问</h1>
+  <p>帮你轻松搞定：新机选购 · 参数对比 · 故障问诊</p>
+</section>
+
+<section class="cards">
+  <a class="card" href="/advisor">
+    <div class="card-icon">🛒</div>
+    <h2>新机选购</h2>
+    <p>输入预算、品类、用途，AI 生成推荐清单与理由。</p>
+    <span class="card-go">进入 →</span>
+  </a>
+  <a class="card" href="/compare">
+    <div class="card-icon">⚖️</div>
+    <h2>参数对比</h2>
+    <p>输入两款数码型号，自动生成结构化对比表格与总结。</p>
+    <span class="card-go">进入 →</span>
+  </a>
+  <a class="card" href="/troubleshoot">
+    <div class="card-icon">🩺</div>
+    <h2>故障问诊</h2>
+    <p>描述设备故障，AI 分步引导你排查并给出解决方案。</p>
+    <span class="card-go">进入 →</span>
+  </a>
+</section>
+
+<section class="new-products">
+  <div class="section-title">
+    <h2>📢 近期新品速递</h2>
+    <span>点击图片直达品牌官网</span>
+  </div>
+  <div class="product-grid">
+    <a class="product-item" href="https://www.apple.com.cn/" target="_blank" rel="noopener">
+      <img src="{{ url_for('static', filename='images/iphone-17-pro.svg') }}" alt="iPhone 17 Pro">
+      <div class="product-caption">
+        <span class="brand">Apple</span>
+        <span class="name">iPhone 17 Pro</span>
+      </div>
+    </a>
+    <a class="product-item" href="https://consumer.huawei.com/cn/" target="_blank" rel="noopener">
+      <img src="{{ url_for('static', filename='images/huawei-mate70-pro.svg') }}" alt="华为 Mate 70 Pro">
+      <div class="product-caption">
+        <span class="brand">HUAWEI</span>
+        <span class="name">Mate 70 Pro</span>
+      </div>
+    </a>
+    <a class="product-item" href="https://www.mi.com/" target="_blank" rel="noopener">
+      <img src="{{ url_for('static', filename='images/xiaomi-15-ultra.svg') }}" alt="小米 15 Ultra">
+      <div class="product-caption">
+        <span class="brand">Xiaomi</span>
+        <span class="name">15 Ultra</span>
+      </div>
+    </a>
+    <a class="product-item" href="https://www.samsung.com.cn/" target="_blank" rel="noopener">
+      <img src="{{ url_for('static', filename='images/samsung-galaxy-s25.svg') }}" alt="Galaxy S25 Ultra">
+      <div class="product-caption">
+        <span class="brand">Samsung</span>
+        <span class="name">Galaxy S25 Ultra</span>
+      </div>
+    </a>
+  </div>
+</section>
+{% endblock %}

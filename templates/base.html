@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}数码选购AI顾问{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=7">
+<script>try{if(localStorage.getItem('digital-advisor-theme')==='dark')document.documentElement.classList.add('dark-theme');}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap top-inner">
+    <a class="brand" href="/">💡 数码选购 AI 顾问</a>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/advisor">新机选购</a>
+      <a href="/compare">参数对比</a>
+      <a href="/troubleshoot">故障问诊</a>
+      <div class="user-area" id="userArea"></div>
+      <button type="button" id="darkModeToggle" class="theme-toggle" title="切换深色模式" aria-label="切换深色模式">🌙</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap main">
+  {% block content %}{% endblock %}
+</main>
+
+
+
+<!-- 登录 / 注册 / 游客模式 弹窗 -->
+<div class="modal-mask" id="loginModal" hidden>
+  <div class="modal">
+    <h3 id="loginTitle">账号登录</h3>
+    <p class="hint" id="loginHint">登录后可修改 AI 设置；不登录也可用「游客模式」直接使用 AI 助手。</p>
+    <label>账号
+      <input type="text" id="login_username" placeholder="请输入账号（字母或数字）" autocomplete="username">
+    </label>
+    <label>密码
+      <input type="password" id="login_password" placeholder="请输入密码" autocomplete="current-password">
+    </label>
+    <label id="confirmRow" hidden>确认密码
+      <input type="password" id="login_confirm" placeholder="再次输入密码" autocomplete="new-password">
+    </label>
+    <div id="loginMsg" class="auth-msg"></div>
+    <div class="modal-actions auth-actions">
+      <button class="btn btn-ghost" id="btnToggleMode">注册账号</button>
+      <button class="btn btn-ghost" id="btnGuest">游客模式</button>
+      <button class="btn btn-primary" id="btnLogin">登录</button>
+    </div>
+  </div>
+</div>
+
+<!-- 设置弹窗（仅登录后可见） -->
+<div class="modal-mask" id="settingsModal" hidden>
+  <div class="modal">
+    <h3>大模型 API 设置</h3>
+    <p class="hint">支持任何 OpenAI 兼容接口；未配置时使用“离线演示模式”。</p>
+    <label>API Key
+      <input type="password" id="cfg_api_key" placeholder="sk-...（留空则不修改）">
+    </label>
+    <label>Base URL
+      <input type="text" id="cfg_base_url" placeholder="https://api.openai.com/v1">
+    </label>
+    <label>模型名称（可留空使用服务商默认）
+      <input type="text" id="cfg_model" placeholder="如 gpt-4o-mini">
+    </label>
+    <label>温度（0~2，越高越发散）
+      <input type="number" id="cfg_temperature" min="0" max="2" step="0.1" value="0.7">
+    </label>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="closeSettings">取消</button>
+      <button class="btn btn-primary" id="saveSettings">保存</button>
+    </div>
+  </div>
+</div>
+
+{% block scripts %}{% endblock %}
+<script src="{{ url_for('static', filename='js/common.js') }}?v=5"></script>
+</body>
+</html>

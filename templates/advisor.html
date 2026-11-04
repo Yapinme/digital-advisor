@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}新机选购 · 数码选购AI顾问{% endblock %}
+{% block content %}
+<h1 class="page-title">🛒 新机选购</h1>
+<p class="subtitle">按需求筛选数码产品，AI 为你生成推荐清单与理由</p>
+
+<div class="card panel">
+  <form id="advisorForm">
+    <div class="grid-3">
+      <label>产品品类
+        <select id="category" name="category">
+          <option value="手机">手机</option>
+          <option value="耳机">耳机 / 无线耳机</option>
+          <option value="笔记本">笔记本电脑</option>
+          <option value="平板">平板电脑</option>
+          <option value="相机">相机</option>
+        </select>
+      </label>
+      <label>主要用途
+        <select id="usage" name="usage">
+          <option value="综合使用">综合使用</option>
+          <option value="游戏">游戏</option>
+          <option value="拍照">拍照</option>
+          <option value="办公学习">办公学习</option>
+        </select>
+      </label>
+      <div>
+        <label>品牌（可单选 / 多选）</label>
+        <div class="filter-box" id="brandBox">
+          <button type="button" class="filter-trigger" id="brandTrigger">全部品牌 ▾</button>
+          <div class="filter-menu" id="brandMenu" hidden>
+            <div class="brand-options" id="brandOptions"></div>
+            <div class="filter-actions">
+              <button type="button" class="btn btn-ghost btn-sm" id="brandClear">清空</button>
+              <button type="button" class="btn btn-primary btn-sm" id="brandConfirm">确定</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3 budget-row">
+      <label>预算最低价（元）
+        <input type="number" id="minPrice" name="minPrice" min="0" step="100" placeholder="如 2000">
+      </label>
+      <label>预算最高价（元）
+        <input type="number" id="maxPrice" name="maxPrice" min="0" step="100" placeholder="如 5000">
+      </label>
+      <div class="budget-hint">价格可留空：留空表示不限，建议至少填一个，让推荐更贴合预算。</div>
+    </div>
+
+    <label>额外需求（可选，例如：要大屏、看重续航、只听流行音乐等）
+      <textarea id="notes" rows="3" placeholder="例如：希望电池耐用、屏幕大一点"></textarea>
+    </label>
+    <div class="actions">
+      <button class="btn btn-primary" type="submit" id="btnRun">生成推荐</button>
+      <button class="btn btn-ghost" type="button" id="btnClearAdv" onclick="advisorPage.clearForm()">重置</button>
+    </div>
+  </form>
+</div>
+
+<div id="advResult" class="card panel" hidden>
+  <div class="result-head">
+    <h2 id="advTitle"></h2>
+    <button class="btn btn-ghost" id="btnCopyAdv">一键复制</button>
+  </div>
+  <div id="advNotice" class="notice" hidden></div>
+  <div id="advItems"></div>
+  <div class="summary" id="advSummary"></div>
+</div>
+
+<div class="card panel">
+  <div class="result-head"><h2>我的选购记录</h2><button type="button" class="btn btn-danger btn-sm" id="btnClearAdvRecords">清空</button></div>
+  <div id="advRecords"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/advisor.js') }}?v=5"></script>
+{% endblock %}
